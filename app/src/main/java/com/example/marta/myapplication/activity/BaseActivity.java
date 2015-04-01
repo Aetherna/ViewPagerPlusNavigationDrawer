@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.marta.myapplication.LolApplication;
 import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.TabsAdapter;
 import com.example.marta.myapplication.fragments.TransactionsFragments;
@@ -23,8 +24,8 @@ import com.example.marta.myapplication.model.AppModelLol;
 public abstract class BaseActivity extends ActionBarActivity {
 
 
-   protected ViewPager mViewPager;
-    protected TabsAdapter mTabsAdapter;
+   protected ViewPager viewPager;
+    protected TabsAdapter viewPagerAdapter;
     private String[] mPlanetTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -34,15 +35,15 @@ public abstract class BaseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         final ActionBar bar = getSupportActionBar();
         bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
-        mTabsAdapter = new TabsAdapter(this, mViewPager);
+        viewPagerAdapter = new TabsAdapter(this, viewPager);
 
-        mTabsAdapter.addTab( getDataFragment().getClass(), null);
-        mTabsAdapter.addTab(  TransactionsFragments.class, null);
+        viewPagerAdapter.addTab(getDataFragment().getClass(), null);
+        viewPagerAdapter.addTab(TransactionsFragments.class, null);
 
         mPlanetTitles = getResources().getStringArray(R.array.planets_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -56,7 +57,7 @@ public abstract class BaseActivity extends ActionBarActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Toast.makeText(BaseActivity.this, "CLicked " + i, Toast.LENGTH_SHORT).show();
-                AppModelLol.handleClick();
+                ((LolApplication)getApplicationContext()).getAppModelLol().handleClick();
             }
         });
     }
@@ -65,13 +66,13 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        if (mViewPager.getCurrentItem() == 0) {
+        if (viewPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
             // Otherwise, select the previous step.
-            mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
 
