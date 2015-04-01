@@ -1,11 +1,11 @@
-package com.example.marta.myapplication;
+package com.example.marta.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.fragments.Data1Fragment;
 
 

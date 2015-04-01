@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.ViewGroup;
+
+import com.example.marta.myapplication.fragments.ILolFragment;
 
 import java.util.ArrayList;
 
@@ -43,8 +46,17 @@ public class TabsAdapter extends FragmentPagerAdapter
     public void addTab(Class<?> clss, Bundle args) {
         TabInfo info = new TabInfo(clss, args);
         mTabs.add(info);
-      //  mActionBar.addTab(tab);
+        //  mActionBar.addTab(tab);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Object instantiateItem(final ViewGroup container, final int position) {
+        Object obj = super.instantiateItem(container, position);
+        if (obj instanceof ILolFragment) {
+            ((ILolFragment) obj).update();
+        }
+        return obj;
     }
 
     @Override
@@ -64,7 +76,7 @@ public class TabsAdapter extends FragmentPagerAdapter
 
     @Override
     public void onPageSelected(int position) {
-       // mActionBar.setSelectedNavigationItem(position);
+        // mActionBar.setSelectedNavigationItem(position);
     }
 
     @Override

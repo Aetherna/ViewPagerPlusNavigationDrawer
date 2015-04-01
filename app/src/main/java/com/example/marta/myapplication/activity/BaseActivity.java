@@ -1,4 +1,4 @@
-package com.example.marta.myapplication;
+package com.example.marta.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.marta.myapplication.fragments.Data1Fragment;
+import com.example.marta.myapplication.R;
+import com.example.marta.myapplication.TabsAdapter;
 import com.example.marta.myapplication.fragments.TransactionsFragments;
+import com.example.marta.myapplication.model.AppModelLol;
 
 
 public abstract class BaseActivity extends ActionBarActivity {
@@ -54,6 +56,7 @@ public abstract class BaseActivity extends ActionBarActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Toast.makeText(BaseActivity.this, "CLicked " + i, Toast.LENGTH_SHORT).show();
+                AppModelLol.handleClick();
             }
         });
     }

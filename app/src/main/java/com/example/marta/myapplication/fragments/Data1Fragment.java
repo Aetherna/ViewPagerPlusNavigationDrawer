@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.marta.myapplication.MainActivity2;
+import com.example.marta.myapplication.activity.MainActivity2;
 import com.example.marta.myapplication.R;
 
 /**
