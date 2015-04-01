@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <array name="planets_array">
+        <item name="saturn">Saturn</item>
+        <item name="pluto">Pluto</item>
+        <item name="mars">Mars</item>
+    </array>
+</resources>
