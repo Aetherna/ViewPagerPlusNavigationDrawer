@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * Created by Marta on 01/04/2015.
  */
 public class TabsAdapter extends FragmentPagerAdapter
-        implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+        implements ViewPager.OnPageChangeListener {
     private final Context mContext;
     private final ActionBar mActionBar;
     private final ViewPager mViewPager;
@@ -51,15 +50,6 @@ public class TabsAdapter extends FragmentPagerAdapter
     }
 
     @Override
-    public Object instantiateItem(final ViewGroup container, final int position) {
-        Object obj = super.instantiateItem(container, position);
-        if (obj instanceof ILolFragment) {
-            ((ILolFragment) obj).update();
-        }
-        return obj;
-    }
-
-    @Override
     public int getCount() {
         return mTabs.size();
     }
@@ -83,21 +73,5 @@ public class TabsAdapter extends FragmentPagerAdapter
     public void onPageScrollStateChanged(int state) {
     }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        Object tag = tab.getTag();
-        for (int i = 0; i < mTabs.size(); i++) {
-            if (mTabs.get(i) == tag) {
-                mViewPager.setCurrentItem(i);
-            }
-        }
-    }
 
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-    }
 }

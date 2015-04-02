@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.marta.myapplication.LolApplication;
 import com.example.marta.myapplication.R;
-import com.example.marta.myapplication.model.AppModelLol;
+import com.example.marta.myapplication.otto.AppModelLolUpdated;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by Marta on 01/04/2015.
@@ -26,13 +28,25 @@ public class TransactionsFragments extends Fragment implements ILolFragment {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.transactions_fragment, container, false);
         transactionsCountTV = (TextView) viewGroup.findViewById(R.id.transactions_count);
 
+        //register to Otto
+        ((LolApplication) getActivity().getApplication()).getScreensMonitor().register(this);
+
+
         return viewGroup;
+    }
+
+    //handle event
+    @Subscribe
+    public void handleAppModelLolUpdatedEvent(AppModelLolUpdated event) {
+        update();
     }
 
     @Override
     public void update() {
         if (transactionsCountTV != null) {
-            transactionsCountTV.setText(lolTransactions + AppModelLol.getClicks());
+            transactionsCountTV.setText(lolTransactions + ((LolApplication) getActivity()
+                    .getApplication()).getAppModelLol()
+                    .getClicks());
         }
     }
 }

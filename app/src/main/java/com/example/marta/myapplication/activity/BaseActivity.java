@@ -17,57 +17,54 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.marta.myapplication.LolApplication;
 import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.TabsAdapter;
 import com.example.marta.myapplication.fragments.TransactionsFragments;
-import com.example.marta.myapplication.model.AppModelLol;
 
 
 public abstract class BaseActivity extends ActionBarActivity {
 
 
-    protected ViewPager mViewPager;
-    protected TabsAdapter mTabsAdapter;
-    private String[] mPlanetTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    ActionBarDrawerToggle mDrawerToggle;
+    protected ViewPager viewPager;
+    protected TabsAdapter viewPagerAdapter;
+    private DrawerLayout drawerLayout;
+    ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        mTabsAdapter = new TabsAdapter(this, mViewPager);
+        viewPagerAdapter = new TabsAdapter(this, viewPager);
 
-        mTabsAdapter.addTab(getDataFragment().getClass(), null);
-        mTabsAdapter.addTab(TransactionsFragments.class, null);
+        viewPagerAdapter.addTab(getDataFragment().getClass(), null);
+        viewPagerAdapter.addTab(TransactionsFragments.class, null);
 
-        mPlanetTitles = getResources().getStringArray(R.array.planets_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        String[] planetTitles = getResources().getStringArray(R.array.planets_array);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ListView drawerList = (ListView) findViewById(R.id.left_drawer);
 
         // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, mPlanetTitles));
+        drawerList.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, planetTitles));
         // Set the list's click listener
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Toast.makeText(BaseActivity.this, "CLicked " + i, Toast.LENGTH_SHORT).show();
-                AppModelLol.handleClick();
+                ((LolApplication) getApplicationContext()).getAppModelLol().handleClick();
             }
         });
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.setDrawerListener(drawerToggle);
     }
 
     protected abstract Fragment getDataFragment();
@@ -75,18 +72,18 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
 
-        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
-            mDrawerLayout.closeDrawers();
+        if (drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawers();
             return;
         }
 
-        if (mViewPager.getCurrentItem() == 0) {
+        if (viewPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
             // Otherwise, select the previous step.
-            mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
     }
 
@@ -100,7 +97,7 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -120,13 +117,13 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+        drawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
 }
