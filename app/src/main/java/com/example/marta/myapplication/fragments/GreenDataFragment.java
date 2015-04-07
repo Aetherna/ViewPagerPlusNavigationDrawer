@@ -1,7 +1,5 @@
 package com.example.marta.myapplication.fragments;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +12,6 @@ import android.widget.Button;
 import com.example.marta.myapplication.OttoApplication;
 import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.TabsAdapter;
-import com.example.marta.myapplication.activity.PinkActivity;
 import com.example.marta.myapplication.model.ETransactionType;
 import com.example.marta.myapplication.viewPager.CustomViewPager;
 
@@ -33,7 +30,7 @@ public class GreenDataFragment extends Fragment {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.green_fragment, container, false);
 
 
-        viewPager = (CustomViewPager) viewGroup.findViewById(R.id.viewpager);
+        viewPager = (CustomViewPager) viewGroup.findViewById(R.id.customviewpager);
 
         tabsAdapter = new TabsAdapter((ActionBarActivity)getActivity(), viewPager);
         tabsAdapter.addTab(DupaFragment.class, null);

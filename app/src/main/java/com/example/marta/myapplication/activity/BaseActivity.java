@@ -17,11 +17,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.marta.myapplication.OttoApplication;
 import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.TabsAdapter;
 import com.example.marta.myapplication.fragments.TransactionsFragment;
-import com.example.marta.myapplication.model.ETransactionType;
 
 
 public abstract class BaseActivity extends ActionBarActivity {
@@ -38,7 +36,6 @@ public abstract class BaseActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_base);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setLogo(R.mipmap.ic_launcher);
         toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
