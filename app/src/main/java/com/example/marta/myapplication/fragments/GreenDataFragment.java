@@ -36,14 +36,14 @@ public class GreenDataFragment extends Fragment {
         tabsAdapter.addTab(DupaFragment.class, null);
         tabsAdapter.addTab(Dupa2Fragment.class, null);
 
-        click = (Button) viewGroup.findViewById(R.id.button);
-        click.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                ((OttoApplication) getActivity().getApplication()).getTransactionsModel()
-                        .handleClick(ETransactionType.GREEN);
-            }
-        });
+//        click = (Button) viewGroup.findViewById(R.id.button);
+//        click.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View view) {
+//                ((OttoApplication) getActivity().getApplication()).getTransactionsModel()
+//                        .handleClick(ETransactionType.GREEN);
+//            }
+//        });
         return viewGroup;
     }
 }

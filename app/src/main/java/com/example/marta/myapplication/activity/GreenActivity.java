@@ -14,10 +14,6 @@ import com.example.marta.myapplication.fragments.PinkDataFragment;
 
 public class GreenActivity extends BaseActivity {
 
-
-    ViewPager mViewPager;
-    TabsAdapter mTabsAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

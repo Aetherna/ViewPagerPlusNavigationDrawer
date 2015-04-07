@@ -22,7 +22,7 @@ public class DupaFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
 
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.pink_data_fragment, container, false);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.dupa_fragment, container, false);
 
         click = (Button) viewGroup.findViewById(R.id.button);
         click.setOnClickListener(new View.OnClickListener() {
