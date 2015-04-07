@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.ViewGroup;
-
-import com.example.marta.myapplication.fragments.ILolFragment;
 
 import java.util.ArrayList;
 
@@ -58,6 +55,17 @@ public class TabsAdapter extends FragmentPagerAdapter
     public Fragment getItem(int position) {
         TabInfo info = mTabs.get(position);
         return Fragment.instantiate(mContext, info.clss.getName(), info.args);
+    }
+
+    @Override
+    public CharSequence getPageTitle(final int position) {
+        switch (position){
+            case 0:
+                return "Data 1";
+            case 1:
+                return "Data 2 ";
+        }
+        return null;
     }
 
     @Override

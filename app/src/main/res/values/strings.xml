@@ -5,11 +5,11 @@
     <string name="action_search">Search</string>
     <string name="action_share">Share</string>
     <string name="action_settings">Settings</string>
-    <string name="toolbarTitle">TROLOLOLO</string>
-    <string name="toolbarSubtitle">LOLO</string>
+    <string name="toolbarTitle">PVX</string>
+    <string name="toolbarSubtitle">Pick > SO1234</string>
     <array name="planets_array">
-        <item name="saturn">Saturn</item>
-        <item name="pluto">Pluto</item>
-        <item name="mars">Mars</item>
+        <item name="saturn">BLUE</item>
+        <item name="pluto">PINK</item>
+        <item name="mars">GREEN</item>
     </array>
 </resources>

@@ -16,10 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.marta.myapplication.LolApplication;
+import com.example.marta.myapplication.OttoApplication;
 import com.example.marta.myapplication.R;
 import com.example.marta.myapplication.TabsAdapter;
-import com.example.marta.myapplication.fragments.TransactionsFragments;
+import com.example.marta.myapplication.fragments.TransactionsFragment;
+import com.example.marta.myapplication.model.ETransactionType;
 
 
 public abstract class BaseActivity extends ActionBarActivity {
@@ -34,7 +35,7 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_base);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
         toolbar.inflateMenu(R.menu.menu_main);
@@ -65,7 +66,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         viewPagerAdapter = new TabsAdapter(this, viewPager);
 
         viewPagerAdapter.addTab(getDataFragment().getClass(), null);
-        viewPagerAdapter.addTab(TransactionsFragments.class, null);
+        viewPagerAdapter.addTab(TransactionsFragment.class, null);
 
         String[] planetTitles = getResources().getStringArray(R.array.planets_array);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,7 +80,7 @@ public abstract class BaseActivity extends ActionBarActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Toast.makeText(BaseActivity.this, "CLicked " + i, Toast.LENGTH_SHORT).show();
-                ((LolApplication) getApplicationContext()).getAppModelLol().handleClick();
+                ((OttoApplication) getApplicationContext()).getTransactionsModel().handleClick(ETransactionType.BLUE);
             }
         });
 
