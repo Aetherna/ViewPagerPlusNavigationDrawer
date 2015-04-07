@@ -16,22 +16,22 @@ import com.example.marta.myapplication.model.ETransactionType;
  * Created by Marta on 01/04/2015.
  */
 public class PinkDataFragment extends Fragment {
-    private Button click;
+        private Button click;
 
-    @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+        @Override
+        public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 //        return super.onCreateView(inflater, container, savedInstanceState);
 
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.pink_data_fragment, container, false);
+            ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.pink_data_fragment, container, false);
 
-        click = (Button) viewGroup.findViewById(R.id.button);
-        click.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                ((OttoApplication) getActivity().getApplication()).getTransactionsModel()
-                        .handleClick(ETransactionType.PINK);
-            }
-        });
-        return viewGroup;
-    }
+            click = (Button) viewGroup.findViewById(R.id.button);
+            click.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    ((OttoApplication) getActivity().getApplication()).getTransactionsModel()
+                            .handleClick(ETransactionType.PINK);
+                }
+            });
+            return viewGroup;
+        }
 }

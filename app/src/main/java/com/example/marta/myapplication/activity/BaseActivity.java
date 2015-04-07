@@ -1,5 +1,6 @@
 package com.example.marta.myapplication.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -80,7 +81,8 @@ public abstract class BaseActivity extends ActionBarActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
                 Toast.makeText(BaseActivity.this, "CLicked " + i, Toast.LENGTH_SHORT).show();
-                ((OttoApplication) getApplicationContext()).getTransactionsModel().handleClick(ETransactionType.BLUE);
+                Intent intent = new Intent(BaseActivity.this, GreenActivity.class);
+                startActivity(intent);
             }
         });
 
